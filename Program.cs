@@ -8,6 +8,7 @@ namespace OOP
 {
     public class Person
     {
+
         public string Name;
         public void Introduce(string to)
         {
@@ -26,10 +27,52 @@ namespace OOP
     {
         static void Main(string[] args)
         {
-            var customer = new Customer(1, "John");
+            UseParams();
 
-            Console.WriteLine(customer.Id);
-            Console.WriteLine(customer.Name);
+            //out param
+            int number;
+            var result = int.TryParse("abc", out number);
+            if(result)
+                Console.WriteLine(number);
+            else
+                Console.WriteLine("Conversion failed");
+        }
+        static void UseParams()
+        {
+            //Param keyword
+            var calculator = new Calculator();
+            Console.WriteLine(calculator.Add(1, 2));
+            Console.WriteLine(calculator.Add(1, 2, 3));
+            Console.WriteLine(calculator.Add(1, 2, 3, 4));
+        }
+        static void UsePoints()
+        {
+            try
+            {
+                //Object Initialization: Syntax for quickly initalizing an object without the need to call one of its constructors to avoid creating multiple constructors
+                var customer = new Customer()
+                {
+                    Id = 1,
+                    Name = "John"
+                };
+
+                Console.WriteLine(customer.Id);
+                Console.WriteLine(customer.Name);
+
+                var point = new Point(10, 20);
+                point.Move(new Point(40, 60));
+                Console.WriteLine("Point is at ({0}, {1})", point.x, point.y);
+
+                point.Move(100, 200);
+                Console.WriteLine("Point is at ({0}, {1})", point.x, point.y);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
+
+
 }
